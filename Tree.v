@@ -1,6 +1,8 @@
 Inductive Tree : Set :=
 |children : list Tree -> Tree.
 
+(*Wrong!*)
+
 Fixpoint length(t:Tree) : nat :=
 match t with
 |children l => S (length_forest l)
@@ -28,3 +30,11 @@ Recursive definition is:
  | (t :: ts)%list => length t + length_forest ts
  end".
 *)
+
+(* Right! *)
+
+Fixpoint length(t:Tree) : nat :=
+  Tree_rect (fun _ : Tree => nat)
+    (fun l : list Tree =>
+     list_rec (fun _ : list Tree => nat) 1
+       (fun (a : Tree) (_ : list Tree) (IHl : nat) => length a + IHl) l) t.
