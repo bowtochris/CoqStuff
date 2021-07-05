@@ -14,7 +14,6 @@ rewrite (Rmult_comm x (/ x)).
 repeat rewrite (Rmult_assoc (/ x)).
 rewrite <- (Rmult_plus_distr_l (/ x)).
 apply Rmult_ge_compat_l.
-Search Rgt Rlt.
 apply (Rgt_ge _ _ (Rlt_gt _ _ (Rinv_0_lt_compat x (Rlt_gt _ _ H)))).
 repeat rewrite <- Rinv_r_sym.
 repeat rewrite <- Rinv_l_sym.
